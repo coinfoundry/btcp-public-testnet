@@ -4,7 +4,7 @@ MAINTAINER oliver@weichhold.com
 RUN apt-get -y update && apt-get -y install git \
       build-essential pkg-config libc6-dev m4 g++-multilib \
       autoconf libtool ncurses-dev unzip git python \
-      zlib1g-dev wget bsdmainutils automake
+      zlib1g-dev wget curl bsdmainutils automake
 
 RUN cd /tmp && git clone https://github.com/BTCPrivate/BitcoinPrivate && \
     cd BitcoinPrivate && ./btcputil/build.sh && mv /tmp/BitcoinPrivate/src/btcpd /usr/bin && mv /tmp/BitcoinPrivate/src/btcp-cli /usr/bin && \
