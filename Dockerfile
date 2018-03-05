@@ -11,8 +11,8 @@ RUN cd /tmp && git clone https://github.com/BTCPrivate/BitcoinPrivate && \
     ./btcputil/fetch-params.sh && cd / && \
     rm -rf /tmp/*
 
-RUN mkdir /data && chmod 777 /data && touch /data/btcprivate.conf
+RUN mkdir /data && chmod 777 /data && mkdir /root/.btcprivate && touch /root/.btcprivate/btcprivate.conf && touch /data/btcprivate.conf
 
-EXPOSE 8232 8233
+EXPOSE 7932 37932
 WORKDIR /tmp
-ENTRYPOINT bgoldd -server -testnet -datadir=/data -rpcuser=user -rpcpassword=pass -rpcport=7932 -rpcbind=0.0.0.0 -rpcallowip=::/0
+ENTRYPOINT btcpd -server -testnet -datadir=/data -rpcuser=user -rpcpassword=pass -rpcport=7932 -zmqpubhashblock=tcp://0.0.0.0:37932 -rpcbind=0.0.0.0 -rpcallowip=::/0
